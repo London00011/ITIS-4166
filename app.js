@@ -3,8 +3,9 @@ const express = require('express');
 const morgan = require('morgan');
 const methodOverride = require('method-override');
 const {MongoClient} = require('mongodb');
-const storyRoutes = require('./routes/storyRoutes');
-const {initCollection} = require('./models/story');
+const storyRoutes = require('./routes/connectionRoutes');
+const mainRoutes = require('./routes/mainRoutes');
+const {initCollection} = require('./models/connection');
 
 //create app
 const app = express();
@@ -36,7 +37,7 @@ app.get('/', (req, res)=>{
     res.render('index');
 });
 
-app.use('/stories', storyRoutes); //probably change this for project 2
+app.use('/connections', connectionRoutes);
 
 app.use((req, res, next) => {
     let err = new Error('The server cannot locate ' + req.url);
