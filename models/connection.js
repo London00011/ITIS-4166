@@ -1,6 +1,6 @@
 const{ObjectId} = require('mongodb');
 
-let connection = [
+const connections = [
     {
         "id": "1",
         "name": "HeroesCon",
@@ -84,7 +84,7 @@ exports.findById = id => connections.findOne({_id: ObjectId(id)});
 
 exports.findByType = id => connections.findOne({type: ObjectId(type)});
 
-exports.save = (story) => connections.insertOne(connection);
+exports.save = (connection) => connections.insertOne(connection);
 
 exports.updateById = (id, newConnection) => connections.findOneAndUpdate({_id: ObjectId(id)}, 
 {$set: {title: newConnection.title, content: newConnection.content}});

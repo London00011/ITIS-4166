@@ -23,14 +23,14 @@ exports.connections = (req, res, next)=>{
         res.render('./connections', {connection});
 };
 
-exports.error = (req, res, next)=>{
+exports.contact = (req, res, next)=>{
     res.render('./contact');
 };
 
-exports.about = (req, res, next)=>{
+exports.error = (req, res, next)=>{
     res.render('./error');
 };
 
-exports.about = (req, res, next)=>{
+exports.index = (req, res, next)=>{
     res.render('./index');
 };

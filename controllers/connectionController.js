@@ -2,7 +2,7 @@ const model = require('../models/connection');
 exports.index = (req, res, next)=>{
     //res.send('send all connections');
     model.find()
-    .then(stories=>res.render('./index', {connections}))
+    .then(connections=>res.render('index', {connections}))
     .catch(err=>next(err));
 };
 
@@ -94,4 +94,19 @@ exports.delete = (req, res, next)=>{
             next(err);
     }
     })
+};
+
+exports.showType = (req, res, next)=>{
+    let type = req.params.type;
+    model.findByType(type)
+    .then(connection=>{
+        if(connection) {
+            res.render('./connection/show', {connection});
+        } else {
+            let err = new Error('Cannot find a connection with type ' + type);
+            err.status = 404;
+            next(err);
+        }
+    })
+    .catch(err => next(err));
 };

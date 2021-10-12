@@ -3,7 +3,7 @@ const express = require('express');
 const morgan = require('morgan');
 const methodOverride = require('method-override');
 const {MongoClient} = require('mongodb');
-const storyRoutes = require('./routes/connectionRoutes');
+const connectionRoutes = require('./routes/connectionRoutes');
 const mainRoutes = require('./routes/mainRoutes');
 const {initCollection} = require('./models/connection');
 
@@ -24,7 +24,7 @@ app.use(methodOverride('_method'));
 
 MongoClient.connect(url, { useUnifiedTopology: true })
 .then(client =>{
-    db = client.db('demos'); //change this for project 2
+    db = client.db('project');
     initCollection(db);
     //start the server
     app.listen(port, host, ()=>{
