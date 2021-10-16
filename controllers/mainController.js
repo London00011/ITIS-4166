@@ -16,15 +16,11 @@ exports.edit = (req, res, next)=>{
 };
 
 exports.about = (req, res, next)=>{
-        res.render('./about');
-};
-
-exports.connections = (req, res, next)=>{
-        res.render('./connections', {connection});
+    res.render('about');
 };
 
 exports.contact = (req, res, next)=>{
-    res.render('./contact');
+    res.render('contact');
 };
 
 exports.error = (req, res, next)=>{

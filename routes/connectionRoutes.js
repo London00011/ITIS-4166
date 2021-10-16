@@ -6,11 +6,11 @@ const router = express.Router();
 //GET /connections/new: send html form for creating a new connection
 router.get('/newConnection', controller.newConnection);
 
+//GET connections page
+router.get('/', controller.index);
+
 //POST /connections: create a new connection
 router.post('/', controller.create);
-
-//GET /connections/:type: send details of connection identified by type
-router.get('/:type', controller.showType);
 
 //GET /connections/:id: send details of connection identified by id
 router.get('/:id', controller.show);

@@ -1,5 +1,6 @@
 const express = require('express');
 const controller = require('../controllers/mainController');
+const connectionRoutes = require('./connectionRoutes');
 
 const router = express.Router();
 
@@ -9,9 +10,6 @@ router.get('/', controller.index);
 //GET about page
 router.get('/about', controller.about);
 
-//GET connections page
-router.get('/connections', controller.connections);
-
 //GET contact page
 router.get('/contact', controller.contact);
 
@@ -20,3 +18,7 @@ router.get('/error', controller.error);
 
 //GET connections page
 router.get('/index', controller.index);
+
+router.use('/connections', connectionRoutes);
+
+module.exports = router;

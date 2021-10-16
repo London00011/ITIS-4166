@@ -1,9 +1,9 @@
-<%- include('partials/header.ejs')%>
+<%- include('../partials/header.ejs')%>
         <h1 class="header">Local Connections</h1>
         <div class="login">
             <div class="loginText">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <a href="newConnection.ejs">Add a Connection</a>
+                <a href="/connections/newConnection">Add a Connection</a>
                 &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
                 <a>Login</a>
                 &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
@@ -15,35 +15,25 @@
         <div class="navText">
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <a href="/">Home</a> | 
-            <a href="connections.ejs">Connections</a>
+            <a href="/connections">Connections</a>
         </div>
     </div>
     <div class="mainbody">
         <div class="text">
-            <h2>Upcoming Comic Conventions</h2>
-            <ul>
-                <li>
-                    <a href="connection.ejs">HeroesCon, June 17-19, 2022 (Charlotte, NC)</a>
-                </li>
-                <li>
-                    <a href="connection.ejs">Giant-Size Charlotte Mini-Con, November 6-7, 2021 (Charlotte, NC)</a>
-                </li>
-                <li>
-                    <a href="connection.ejs">Empire City Con, November 12-14, 2021 (Charlotte, NC)</a>
-                </li>
-            </ul>
-            <h2>Local Comic Shops</h2>
-            <ul>
-                <li>
-                    <a href="connection.ejs">Heroes Aren't Hard to Find</a>
-                </li>
-                <li>
-                    <a href="connection.ejs">Rebel Base Comics & Toys</a>
-                </li>
-                <li>
-                    <a href="connection.ejs">A. Pennyworth's</a>
-                </li>
-            </ul>
+            <%if(connections.length > 0) {%>
+                <h1>Select a connection to view</h1>
+                <%types.forEach(type=>{%>
+                    <h2><%= type%></h2>
+                    <%connections.forEach(conn=>{%>
+                       <% if(conn.type == type){ %>
+                        • &nbsp; <a href = "connections/<%= conn.id%>"><%= conn.name%></a><br>
+                       <% } %>
+                    <% }); %>                      
+                <% });
+            } else {%>
+                <p>There are no connections to display.</p>
+            <%}%>
         </div>
     </div>
-<%- include('partials/footer.ejs')%>
+<%- include('../partials/footer.ejs')%>
+

@@ -1,9 +1,9 @@
-<%- include('partials/header.ejs')%>
+<%- include('../partials/header.ejs')%>
         <h1 class="header">Local Connections</h1>
         <div class="login">
             <div class="loginText">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <a href="newConnection.ejs">Add a Connection</a>
+                <a href="/connections/newConnection">Add a Connection</a>
                 &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
                 <a>Login</a>
                 &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
@@ -15,47 +15,49 @@
         <div class="navText">
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <a href="/">Home</a> | 
-            <a href="connections">Connections</a>
+            <a href="/connections">Connections</a>
         </div>
     </div>
     <div class="mainbody">
         <div class="forms">
             <div class="spacer">
-                <div>
-                    <label class="required">Catagory</label>
-                    <select id="catagory" name="Catagory" title="Are you registering a convention or a local comic shop?">
-                        <option value="convention">Convention</option>
-                        <option value="lcs">Comic Shop</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="required">Name:</label>
-                    <input type="text" class="required" title="Please enter the name of your event">
-                </div>
-                <div>
-                    <label id="label">Price:</label>
-                    <input type="text" title="Please enter the price of your event">
-                </div>
-                <div>
-                    <label class="required">Location:</label>
-                    <input type="text" class="required" title="Please enter the location of your event">
-                </div>
-                <div>
-                    <label class="required">Date:</label>
-                    <input type="date" class="required" title="Please enter the date of your event">
-                </div>
-                <div>
-                    <label class = "required">Image URL:</label>
-                    <input type="text" class="required" title="Link to image you wish to be displayed">
-                </div>
-                <div>
-                    <label class="details-label">Details:</label>
-                    <textarea name="message" class="required" id="message" title="Are there any further details you wish to share?"></textarea>
-                </div>
-                <div class="submit">
-                    <button id="button" onclick="window.location.href = 'connections.ejs';">Submit</button>
-                </div>
+                <form action = "/connections" method = "POST">
+                    <div>
+                        <label class="required">Type:</label>
+                        <select id="type" name="type" title="Are you registering a convention or a local comic shop?">
+                            <option value="convention">Convention</option>
+                            <option value="store">Comic Shop</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="required">Name:</label>
+                        <input type="text" class="required" id = "name" name = "name" title="Please enter the name of your event">
+                    </div>
+                    <div>
+                        <label id="label">Price:</label>
+                        <input type="text" id = "price" name = "price" title="Please enter the price of your event">
+                    </div>
+                    <div>
+                        <label class="required">Location:</label>
+                        <input type="text" id = "location" name = "location" class="required" title="Please enter the location of your event">
+                    </div>
+                    <div>
+                        <label class="required">Date:</label>
+                        <input type="date" id = "date" name = "date" class="required" title="Please enter the date of your event (for stores, please enter todays date)">
+                    </div>
+                    <div>
+                        <label class = "required">Image URL:</label>
+                        <input type="text" id = "image" name = "image" class="required" title="Link to image you wish to be displayed">
+                    </div>
+                    <div>
+                        <label class="details-label">Description:</label>
+                        <textarea name="details" id = "details" class="required" title="Are there any further details you wish to share?"></textarea>
+                    </div>
+                    <div class="submit">
+                        <button id="button">Submit</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-<%- include('partials/footer.ejs')%>
+<%- include('../partials/footer.ejs')%>

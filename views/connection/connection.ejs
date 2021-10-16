@@ -1,9 +1,9 @@
-<%- include('partials/header.ejs')%>
-        <h1 class="header">HeroesCon</h1>
+<%- include('../partials/header.ejs')%>
+        <h1 class="header"><%= connection.name%></h1>
         <div class="login">
             <div class="loginText">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <a href="newConnection.ejs">Add a Connection</a>
+                <a href="/connections/newConnection">Add a Connection</a>
                 &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
                 <a>Login</a>
                 &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
@@ -15,29 +15,29 @@
         <div class="navText">
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <a href="/">Home</a> | 
-            <a href="connections.ejs">Connections</a>
+            <a href="/connections">Connections</a>
         </div>
     </div>
     <div class="mainbody">
         <div class="buttons">
-            <button id="button" onclick="window.location.href = 'connections.ejs';">Update</button>
-            <button id="button2" onclick="window.location.href = 'connections.ejs';">Delete</button>
+            <form>
+                <button type = "submit" formmethod = "GET" formaction = "/connections/<%= connection.id%>/edit" id="button">Update</button>
+                <button type = "submit" formmethod = "POST" formaction = '/connections/<%= connection.id%>?_method=DELETE' id="button2">Delete</button>
+            </form>
         </div>
         <div class="text">
-            <img src="/images/heroes.jpg" class="heroes" alt="HeroesCon Poster">
+            <img src="<%= connection.image%>" class="heroes" alt="Poster">
         </div>   
         <div class="heroesText">
             <h2>Description</h2>
-            <p>2022 marks the 40th anniversary of HeroesCon. Heroes Aren't Hard to Find have been open for nearly 42 years and have hosted HeroesCon every year since 1982.</p>
-            <p>In past years many legendary guests have attended such as Herb Trimpe, Jim Starlin, George Perez, and of course, Stan Lee.</p>
+            <p><%= connection.details%></p>
             <h3>Pricing:</h3>
-            <ul>
-                <li>1-day pass: $25 Friday & Saturday. $20 Sunday</li>
-                <li>3-day pass: $50</li>
-                <li>Children 18 & under are free!</li>
-            </ul>
+            <p><%= connection.price%></p>
             <h3 class="location">Location:</h3>
-            <p class="location">Charlotte Convention Center, 501 S. College St. Charlotte, NC 28202</p>
+            <p class="location"><%= connection.location%></p>
+            <br>
+            <h3 class="location">Date:</h3>
+            <p class="location"><%= connection.date%></p>
         </div>
     </div>
-<%- include('partials/footer.ejs')%>
+<%- include('../partials/footer.ejs')%>

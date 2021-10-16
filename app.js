@@ -32,12 +32,7 @@ MongoClient.connect(url, { useUnifiedTopology: true })
     })
 })
 
-//set up routes
-app.get('/', (req, res)=>{
-    res.render('index');
-});
-
-app.use('/connections', connectionRoutes);
+app.use('/', mainRoutes);
 
 app.use((req, res, next) => {
     let err = new Error('The server cannot locate ' + req.url);
