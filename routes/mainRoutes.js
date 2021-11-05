@@ -1,6 +1,7 @@
 const express = require('express');
 const controller = require('../controllers/mainController');
 const connectionRoutes = require('./connectionRoutes');
+const userRoutes = require('./userRoutes');
 
 const router = express.Router();
 
@@ -20,5 +21,7 @@ router.get('/error', controller.error);
 router.get('/index', controller.index);
 
 router.use('/connections', connectionRoutes);
+
+router.use('/user', userRoutes);
 
 module.exports = router;

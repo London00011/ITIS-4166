@@ -1,59 +1,75 @@
 <%- include('../partials/header.ejs')%>
     <h1 class="header">Edit Connection</h1>
-    <div class="login">
+    <%if(!user) {%>
+        <div class="login2">
             <div class="loginText">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="/connections/newConnection">Add a Connection</a>
-            &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-            <a>Login</a>
-            &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-            <a>Register</a>
+                <a href="user/login">Login</a>
+                &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                <a href="../user/register">Register</a>
+    <%} else {%>
+        <div class="login">
+            <div class="loginText">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/connections/newConnection">Add a Connection</a>
+                &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                <a href="../user/profile">Profile</a>
+                &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                <a href="../user/logout">Logout</a>
+    <%}%>
+            </div>
         </div>
     </div>
-</div>
-<div class="navbar">
-    <div class="navText">
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="/">Home</a> | 
-        <a href="/connections">Connections</a>
-    </div>
-</div>
-<div class="mainbody">
-    <div class="forms">
-        <div class = "spacer">
-            <form method = "POST" action = "/connections/<%= connection.id%>?_method=PUT">
-                <label class="required">Type:</label>
-                <select id="type" name="type" title="Are you registering a convention or a local comic shop?">
-                    <option value="convention">Convention</option>
-                    <option value="store">Comic Shop</option>
-                </select>
-                <div>
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" value = "<%= connection.name%>" class = "fixed-width">
-                </div>
-                <div>
-                    <label for="price">Price:</label>
-                    <input type="text" id="price" name="price" value = "<%= connection.price%>" class = "fixed-width">
-                </div>
-                <div>
-                    <label for="location">Location:</label>
-                    <input type="text" id="location" name="location" value = "<%= connection.location%>" class = "fixed-width">
-                </div>
-                <div>
-                    <label for="date" class="required">Date:</label>
-                    <input type="date" id="date" name="date" value = "<%= connection.date%>" class = "fixed-width">
-                </div>
-                <div>
-                    <label for="image">Image URL:</label>
-                    <input type="text" id="image" name="image" value = "<%= connection.image%>" class = "fixed-width">
-                </div>
-                <label for="details">Details</label>
-                <textarea rows="5" id="details" name="details" class = "fixed-width"><%= connection.details%></textarea>
-                <div class = "submit">
-                    <button id = "button">Submit</button>
-                </div>
-            </form>
+    <div class="navbar">
+        <div class="navText">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="/">Home</a> | 
+            <a href="/connections">Connections</a>
         </div>
     </div>
-</div>
+    <div class="mainbody">
+        <div class="forms">
+            <div class = "spacer">
+                <form method = "POST" action = "/connections/<%= connection.id%>?_method=PUT">
+                    <label class="required">Type:</label>
+                    <select id="type" name="type" title="Are you registering a convention or a local comic shop?">
+                        <option value="convention">Convention</option>
+                        <option value="store">Comic Shop</option>
+                    </select>
+                    <div>
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" value = "<%= connection.name%>" class = "fixed-width" required>
+                    </div>
+                    <div>
+                        <label for="price">Price:</label>
+                        <input type="text" id="price" name="price" value = "<%= connection.price%>" class = "fixed-width" required>
+                    </div>
+                    <div>
+                        <label for="location">Location:</label>
+                        <input type="text" id="location" name="location" value = "<%= connection.location%>" class = "fixed-width" required>
+                    </div>
+                    <div>
+                        <label for="date" class="required">Date:</label>
+                        <input type="date" id="date" name="date" value = "<%= connection.date%>" class = "fixed-width" required>
+                    </div>
+                    <div>
+                        <label for="start" class="required">Start:</label>
+                        <input type="time" id="time" name="start" value = "<%= connection.start%>" class = "fixed-width" required>
+                    </div>
+                    <div>
+                        <label for="end" class="required">End:</label>
+                        <input type="time" id="time" name="end" value = "<%= connection.end%>" class = "fixed-width" required>
+                    </div>
+                    <div>
+                        <label for="image">Image URL:</label>
+                        <input type="text" id="image" name="image" value = "<%= connection.image%>" class = "fixed-width" required>
+                    </div>
+                    <label for="details">Details</label>
+                    <textarea rows="5" id="details" name="details" class = "fixed-width" required><%= connection.details%></textarea>
+                    <div class = "submit">
+                        <button id = "button">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 <%- include('../partials/footer.ejs')%>

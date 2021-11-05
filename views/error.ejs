@@ -1,27 +1,35 @@
 <%- include('partials/header.ejs')%>
     <h1 class="header">Error</h1>
-    <div class="login">
+    <%if(!user) {%>
+        <div class="login2">
             <div class="loginText">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="/connections/newConnection">Add a Connection</a>
-            &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-            <a>Login</a>
-            &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-            <a>Register</a>
+                <a href="user/login">Login</a>
+                &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                <a href="user/register">Register</a>
+    <%} else {%>
+        <div class="login">
+            <div class="loginText">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/connections/newConnection">Add a Connection</a>
+                &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                <a href="user/profile">Profile</a>
+                &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                <a href="user/logout">Logout</a>
+    <%}%>
+            </div>
         </div>
     </div>
-</div>
-<div class="navbar">
-    <div class="navText">
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="/">Home</a> | 
-        <a href="/connections">Connections</a>
+    <div class="navbar">
+        <div class="navText">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="/">Home</a> | 
+            <a href="/connections">Connections</a>
+        </div>
     </div>
-</div>
-<div class="mainbody">
-    <div class="text">
-        <h3><%= error.status%> Error</h3> 
-        <p><%= error.message%> </p>
+    <div class="mainbody">
+        <div class="text">
+            <h3><%= error.status%> Error</h3> 
+            <p><%= error.message%> </p>
+        </div>
     </div>
-</div>
-<%- include('partials/footer.ejs')%>
+    <%- include('partials/footer.ejs')%>

@@ -25,13 +25,26 @@
 }
 
 .login {
-    position: relative;
-    margin-left: auto;
-    margin-right: 0px;
+    position: absolute;
+    margin-left: 65.3vw;
+    margin-right: auto;
     margin-bottom: 0px;
-    margin-top: 65px;
+    margin-top: 2.5%;
     height: 50px;
-    width: 500px;
+    width: 33.2%;
+    background-color: #105285;
+    z-index: 2;
+    color: white;
+}
+
+.login2 {
+    position: absolute;
+    margin-left: 84.9vw;
+    margin-right: auto;
+    margin-bottom: 0px;
+    margin-top: 2.5%;
+    height: 50px;
+    width: 13.2%;
     background-color: #105285;
     z-index: 2;
     color: white;
@@ -58,7 +71,7 @@
 .mainbody {
     margin-top: -65px;
     position: relative;
-    min-height: 100vh;
+    min-height: 110vh;
     width: 100%;
     background-color: #67696B;
     z-index: 1;
@@ -258,4 +271,41 @@ form {
     position: relative;
     margin-left: 125px;
     margin-top: 20px;
+}
+
+.success {
+    position: absolute;
+    background: rgba(108, 192, 112, 0.7);
+    color: #fff;
+    width: 70%;
+    margin-right: 500px;
+    margin-left: 350px;
+    text-align: center;
+    padding: 10px 10px;
+  }
+  
+.error {
+    position: absolute;
+    background: rgba(255, 102, 51, 0.7);
+    color: #fff;
+    width: 70%;
+    margin-right: 500px;
+    margin-left: 350px;
+    text-align: center;
+    padding: 10px 10px;
+    z-index: 1;
+  }
+
+  input[type="time"] {
+	width: 250px;
+	height: 15px;
+	outline: solid;
+	outline-color: #5599CD;
+}
+
+.welcome {
+    position: relative;
+    color: white;
+    top: 7vh;
+    text-align: center;
 }

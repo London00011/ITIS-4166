@@ -11,3 +11,19 @@
             <a href="/">
                 <img src="/images/logo.PNG" alt="Logo: Local Conventions" class="logo">
             </a>
+            <% if(errorMessages.length > 0) {%>
+                <% errorMessages.forEach(message=>{%>
+                    <div class='error'>
+                        <%=message%>
+                    </div>
+                    <%});%>
+                        <%}%>
+            
+                            <% if(successMessages.length > 0) {%>
+            
+                                <% successMessages.forEach(message=>{%>
+                                    <div class='success'>
+                                        <%=message%>
+                                    </div>
+                                    <%});%>
+                                        <%}%>

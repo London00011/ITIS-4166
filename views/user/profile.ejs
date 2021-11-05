@@ -1,0 +1,41 @@
+<%- include('../partials/header.ejs')%>
+<h1 class="header">About</h1>
+    <%if(!user) {%>
+        <div class="login2">
+            <div class="loginText">
+                <a href="login">Login</a>
+                &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                <a href="register">Register</a>
+    <%} else {%>
+        <div class="login">
+            <div class="loginText">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/connections/newConnection">Add a Connection</a>
+                &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                <a href="/user/profile">Profile</a>
+                &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                <a href="user/logout">Logout</a>
+    <%}%>
+            </div>
+        </div>
+    </div>
+    <div class="navbar">
+        <div class="navText">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="/">Home</a> | 
+            <a href="/connections">Connections</a>
+        </div>
+    </div>
+    <div class="mainbody">
+        <h2 class="welcome">Welcome <%=user.firstName%></h2>
+        <%if(connections.length) {%>
+            <p>You have created the following connections</p>
+            <%connections.forEach(connection => {%>
+                <a href = '/connections/<%= connection.id%>'><p><%=connection.name%></p></a>
+            <%});
+        } else {%>
+            <p class="welcome">You have not created any connections</p>
+        <%}%>
+        </div>
+    </div>
+<%- include('../partials/footer.ejs')%>

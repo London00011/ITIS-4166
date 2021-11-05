@@ -1,13 +1,21 @@
 <%- include('../partials/header.ejs')%>
-        <h1 class="header">Local Connections</h1>
+    <h1 class="header">Local Connections</h1>
+    <%if(!user) {%>
+        <div class="login2">
+            <div class="loginText">
+                <a href="../user/login">Login</a>
+                &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                <a href="../user/register">Register</a>
+    <%} else {%>
         <div class="login">
             <div class="loginText">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <a href="/connections/newConnection">Add a Connection</a>
                 &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-                <a>Login</a>
+                <a href="../user/profile">Profile</a>
                 &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-                <a>Register</a>
+                <a href="../user/logout">Logout</a>
+    <%}%>
             </div>
         </div>
     </div>
@@ -24,34 +32,42 @@
                 <form action = "/connections" method = "POST">
                     <div>
                         <label class="required">Type:</label>
-                        <select id="type" name="type" title="Are you registering a convention or a local comic shop?">
+                        <select id="type" name="type" title="Are you registering a convention or a local comic shop?" required>
                             <option value="convention">Convention</option>
                             <option value="store">Comic Shop</option>
                         </select>
                     </div>
                     <div>
                         <label class="required">Name:</label>
-                        <input type="text" class="required" id = "name" name = "name" title="Please enter the name of your event">
+                        <input type="text" class="required" id = "name" name = "name" title="Please enter the name of your event" required>
                     </div>
                     <div>
-                        <label id="label">Price:</label>
-                        <input type="text" id = "price" name = "price" title="Please enter the price of your event">
+                        <label id="label" class="required">Price:</label>
+                        <input type="text" class="required" id = "price" name = "price" title="Please enter the price of your event" required>
                     </div>
                     <div>
-                        <label class="required">Location:</label>
-                        <input type="text" id = "location" name = "location" class="required" title="Please enter the location of your event">
+                        <label class="required" required>Location:</label>
+                        <input type="text" id = "location" name = "location" class="required" title="Please enter the location of your event" required>
                     </div>
                     <div>
                         <label class="required">Date:</label>
-                        <input type="date" id = "date" name = "date" class="required" title="Please enter the date of your event (for stores, please enter todays date)">
+                        <input type="date" id = "date" name = "date" class="required" title="Please enter the date of your event (for stores, please enter todays date)" required>
+                    </div>
+                    <div>
+                        <label for="start" class="required">Start:</label>
+                        <input type="time" id="time" name="start" class = "fixed-width" required>
+                    </div>
+                    <div>
+                        <label for="end" class="required">End:</label>
+                        <input type="time" id="time" name="end" class = "fixed-width" required>
                     </div>
                     <div>
                         <label class = "required">Image URL:</label>
-                        <input type="text" id = "image" name = "image" class="required" title="Link to image you wish to be displayed">
+                        <input type="text" id = "image" name = "image" class="required" title="Link to image you wish to be displayed" required>
                     </div>
                     <div>
                         <label class="details-label">Description:</label>
-                        <textarea name="details" id = "details" class="required" title="Are there any further details you wish to share?"></textarea>
+                        <textarea name="details" id = "details" class="required" title="Are there any further details you wish to share?" required></textarea>
                     </div>
                     <div class="submit">
                         <button id="button">Submit</button>

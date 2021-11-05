@@ -1,13 +1,21 @@
 <%- include('partials/header.ejs')%>
 <h1 class="header">About</h1>
+    <%if(!user) {%>
+        <div class="login2">
+            <div class="loginText">
+                <a href="user/login">Login</a>
+                &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                <a href="user/register">Register</a>
+    <%} else {%>
         <div class="login">
             <div class="loginText">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <a href="/connections/newConnection">Add a Connection</a>
                 &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-                <a>Login</a>
+                <a href="user/profile">Profile</a>
                 &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-                <a>Register</a>
+                <a href="user/logout">Logout</a>
+    <%}%>
             </div>
         </div>
     </div>

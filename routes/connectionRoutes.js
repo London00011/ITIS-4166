@@ -1,5 +1,6 @@
 const express = require('express');
 const controller = require('../controllers/connectionController');
+const{validateId} = require('../middlewares/validator');
 
 const router = express.Router();
 
@@ -13,15 +14,15 @@ router.get('/', controller.index);
 router.post('/', controller.create);
 
 //GET /connections/:id: send details of connection identified by id
-router.get('/:id', controller.show);
+router.get('/:id', validateId, controller.show);
 
 //GET /connections/:id/edit: send html form for editing an exising connection
-router.get('/:id/edit', controller.edit);
+router.get('/:id/edit',validateId, controller.edit);
 
 //PUT /connections/:id: update the connection identified by id
-router.put('/:id', controller.update);
+router.put('/:id', validateId, controller.update);
 
 //DELETE /connections/:id, delete the connection identified by id
-router.delete('/:id', controller.delete);
+router.delete('/:id', validateId, controller.delete);
 
 module.exports = router;
