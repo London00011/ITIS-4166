@@ -17,8 +17,10 @@ const connectionSchema = new Schema({
     host: {type: String, require: [true, 'Host is required']},
     price: {type: String, require: [true, 'Price is required']},
     location: {type: String, required: [true, 'Location is required']},
-    image: {type: String, require: [true, 'Image URL is required']}
-});
+    image: {type: String, require: [true, 'Image URL is required']},
+},
+    {timestamps: true}
+);
 
 connectionSchema.statics.findTypes = function(connections) {
     const types = [];
@@ -27,7 +29,7 @@ connectionSchema.statics.findTypes = function(connections) {
             types.push(connections[i].type);
         }
     }
-    return types
-}
+    return types;
+};
 
 module.exports = mongoose.model('connections', connectionSchema);

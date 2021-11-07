@@ -16,12 +16,12 @@ exports.create = (req, res, next)=>{
     .catch(err=>{
         if(err.name === 'ValidationError' ) {
             req.flash('error', err.message);  
-            return res.redirect('/error');
+            return res.redirect('back');
         }
 
         if(err.code === 11000) {
             req.flash('error', 'Email has been used');  
-            return res.redirect('/error');
+            return res.redirect('back');
         }
         next(err);
     }); 
@@ -60,7 +60,7 @@ exports.login = (req, res, next)=>{
 
 exports.profile = (req, res, next)=>{
     let id = req.session.user;
-    Promise.all([model.findById(id), Connection.find({author: id})])
+    Promise.all([model.findById(id), Connection.find({creator: id})])
     .then(results=>{
         const [user, connections] = results;
         res.render('./user/profile', {user, connections});

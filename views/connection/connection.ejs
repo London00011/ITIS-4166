@@ -28,10 +28,12 @@
     </div>
     <div class="mainbody">
         <div class="buttons">
-            <form>
-                <button type = "submit" formmethod = "GET" formaction = "/connections/<%= connection.id%>/edit" id="button">Update</button>
-                <button type = "submit" formmethod = "POST" formaction = '/connections/<%= connection.id%>?_method=DELETE' id="button2">Delete</button>
-            </form>
+            <%if(user == connection.creator._id) {%>
+                <form>
+                    <button type = "submit" formmethod = "GET" formaction = "/connections/<%= connection.id%>/edit" id="button">Update</button>
+                    <button type = "submit" formmethod = "POST" formaction = '/connections/<%= connection.id%>?_method=DELETE' id="button2">Delete</button>
+                </form>
+            <%}%>
         </div>
         <div class="text">
             <img src="<%= connection.image%>" class="heroes" alt="Poster">
@@ -52,6 +54,8 @@
             <br>
             <h3 class="location">End:</h3>
             <p class="location"><%= connection.end%></p>
+            <br>
+            <small>Posted <%= connection.createdAt.toLocaleString()%> by <%= connection.creator.firstName + ' ' + connection.creator.lastName%></small>
         </div>
     </div>
 <%- include('../partials/footer.ejs')%>

@@ -309,3 +309,13 @@ form {
     top: 7vh;
     text-align: center;
 }
+
+.welcome2 {
+    position: relative;
+    color: white;
+    top: 15vh;
+    text-align: center;
+    color: white;
+    margin-left: 270px;
+    margin-right: 270px;
+}

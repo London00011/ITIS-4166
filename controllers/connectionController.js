@@ -21,7 +21,7 @@ exports.connections = (req, res, next)=>{
 
 exports.create = (req, res, next)=>{
     let connection = new model(req.body);//create a new connection document
- //   connection.creator = req.session.user;
+    connection.creator = req.session.user;
     connection.save()//insert the document to the database
     .then(connection=> {
         req.flash('success', 'Connection has been created successfully');
@@ -30,7 +30,7 @@ exports.create = (req, res, next)=>{
     .catch(err=>{
         if(err.name === 'ValidationError' ) {
         req.flash('error', err.message);
-        return res.redirect('/error');
+        return res.redirect('/back');
         }
         next(err);
     });
@@ -38,7 +38,14 @@ exports.create = (req, res, next)=>{
 
 exports.show = (req, res, next)=>{
     let id = req.params.id;
-    model.findById(id) //.populate('creator', 'firstName lastName')
+
+    if(!id.match(/^[0-9a-fA-F]{24}$/)) {
+        let err = new Error('Invalid story id');
+        err.status = 400;
+        return next(err);
+    }
+
+    model.findById(id).populate('creator', 'firstName lastName')
     .then(connection=>{
         if(connection) {       
             return res.render('./connection/connection', {connection});
@@ -53,6 +60,13 @@ exports.show = (req, res, next)=>{
 
 exports.edit = (req, res, next)=>{
     let id = req.params.id;
+
+    if(!id.match(/^[0-9a-fA-F]{24}$/)) {
+        let err = new Error('Invalid story id');
+        err.status = 400;
+        return next(err);
+    }
+
     model.findById(id)
     .then(connection=>{
         return res.render('./connection/edit', {connection});
@@ -64,6 +78,12 @@ exports.update = (req, res, next)=>{
     let id = req.params.id;
     let connection = req.body;
 
+    if(!id.match(/^[0-9a-fA-F]{24}$/)) {
+        let err = new Error('Invalid story id');
+        err.status = 400;
+        return next(err);
+    }
+
     model.findByIdAndUpdate(id, connection, {useFindAndModify: false, runValidators: true})
     .then(connection=>{
         return res.redirect('/connections/'+id);
@@ -71,7 +91,7 @@ exports.update = (req, res, next)=>{
     .catch(err=> {
         if(err.name === 'ValidationError') {
             req.flash('error', err.message);
-            return res.redirect('/connections/');
+            return res.redirect('/back');
         }
         next(err);
     });
@@ -80,9 +100,21 @@ exports.update = (req, res, next)=>{
 exports.delete = (req, res, next)=>{
     let id = req.params.id;
 
+    if(!id.match(/^[0-9a-fA-F]{24}$/)) {
+        let err = new Error('Invalid story id');
+        err.status = 400;
+        return next(err);
+    }
+
     model.findByIdAndDelete(id, {useFindAndModify: false})
-    .then(story =>{
-        res.redirect('/');
+    .then(connection =>{
+        if(connection) {
+        res.redirect('/connections');
+    } else {
+        let err = new Error('Cannot find a story with id ' + id);
+        err.status = 404;
+        return next(err);
+        }
     })
     .catch(err=>next(err));
 };
