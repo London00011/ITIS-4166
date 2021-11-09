@@ -40,8 +40,9 @@ exports.show = (req, res, next)=>{
     let id = req.params.id;
 
     if(!id.match(/^[0-9a-fA-F]{24}$/)) {
-        let err = new Error('Invalid story id');
+        let err = new Error('Invalid connection id');
         err.status = 400;
+        req.flash('error', err.message);
         return next(err);
     }
 
@@ -50,7 +51,7 @@ exports.show = (req, res, next)=>{
         if(connection) {       
             return res.render('./connection/connection', {connection});
         } else {
-            let err = new Error('Cannot find a story with id ' + id);
+            let err = new Error('Cannot find a connection with id ' + id);
             err.status = 404;
             next(err);
         }
@@ -62,7 +63,7 @@ exports.edit = (req, res, next)=>{
     let id = req.params.id;
 
     if(!id.match(/^[0-9a-fA-F]{24}$/)) {
-        let err = new Error('Invalid story id');
+        let err = new Error('Invalid connection id');
         err.status = 400;
         return next(err);
     }
@@ -79,7 +80,7 @@ exports.update = (req, res, next)=>{
     let connection = req.body;
 
     if(!id.match(/^[0-9a-fA-F]{24}$/)) {
-        let err = new Error('Invalid story id');
+        let err = new Error('Invalid connection id');
         err.status = 400;
         return next(err);
     }
@@ -101,7 +102,7 @@ exports.delete = (req, res, next)=>{
     let id = req.params.id;
 
     if(!id.match(/^[0-9a-fA-F]{24}$/)) {
-        let err = new Error('Invalid story id');
+        let err = new Error('Invalid connection id');
         err.status = 400;
         return next(err);
     }
@@ -111,7 +112,7 @@ exports.delete = (req, res, next)=>{
         if(connection) {
         res.redirect('/connections');
     } else {
-        let err = new Error('Cannot find a story with id ' + id);
+        let err = new Error('Cannot find a connection with id ' + id);
         err.status = 404;
         return next(err);
         }

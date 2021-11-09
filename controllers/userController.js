@@ -29,11 +29,10 @@ exports.create = (req, res, next)=>{
 };
 
 exports.getUserLogin = (req, res, next) => {
-        return res.render('./user/login');
+    return res.render('./user/login');
 }
 
 exports.login = (req, res, next)=>{
-
     let email = req.body.email;
     let password = req.body.password;
     model.findOne({ email: email })

@@ -1,28 +1,29 @@
 const express = require('express');
 const controller = require('../controllers/connectionController');
+const { isLoggedIn } = require('../middlewares/auth');
 const{validateId} = require('../middlewares/validator');
 
 const router = express.Router();
 
 //GET /connections/new: send html form for creating a new connection
-router.get('/newConnection', controller.newConnection);
+router.get('/newConnection', isLoggedIn, controller.newConnection);
 
 //GET connections page
 router.get('/', controller.index);
 
 //POST /connections: create a new connection
-router.post('/', controller.create);
+router.post('/', isLoggedIn, controller.create);
 
 //GET /connections/:id: send details of connection identified by id
 router.get('/:id', validateId, controller.show);
 
 //GET /connections/:id/edit: send html form for editing an exising connection
-router.get('/:id/edit',validateId, controller.edit);
+router.get('/:id/edit', validateId, isLoggedIn, controller.edit);
 
 //PUT /connections/:id: update the connection identified by id
-router.put('/:id', validateId, controller.update);
+router.put('/:id', validateId, isLoggedIn, controller.update);
 
 //DELETE /connections/:id, delete the connection identified by id
-router.delete('/:id', validateId, controller.delete);
+router.delete('/:id', validateId, isLoggedIn, controller.delete);
 
 module.exports = router;

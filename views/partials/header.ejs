@@ -11,6 +11,9 @@
             <a href="/">
                 <img src="/images/logo.PNG" alt="Logo: Local Conventions" class="logo">
             </a>
+            <%if(user) {%>
+                <h2 class="name"><%=user.firstName%> <%=user.lastName%></h2>
+            <% }; %>
             <% if(errorMessages.length > 0) {%>
                 <% errorMessages.forEach(message=>{%>
                     <div class='error'>

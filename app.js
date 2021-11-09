@@ -22,7 +22,7 @@ app.set('view engine', 'ejs');
 
 //connect to database
 mongoose.connect('mongodb://localhost:27017/project', 
-                {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true})
+                {useNewUrlParser: true, useUnifiedTopology: true})
 .then(()=>{
     //start app
     app.listen(port, host, ()=>{
