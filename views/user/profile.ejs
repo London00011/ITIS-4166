@@ -37,6 +37,18 @@
             } else {%>
                 <p class="welcome">You have not created any connections</p>
             <%}%>
+            <%if(rsvps.length) {%>
+                <h3>You have the following RSVPs:</h3>
+                    <%rsvps.forEach(rsvp=>{%>
+                        • &nbsp; <a href = "../connections/<%= rsvp.connection.id%>"><%= rsvp.connection.name%>: <%=rsvp.rsvp%></a><br><br>
+                        <form>
+                            <button formmethod ="get" formaction="/connections/<%=rsvp.connection._id%>/" class="rsvp">Update</button>
+                            <button formmethod="post" formaction="/connections/<%=rsvp.connection._id%>/rsvp?_method=DELETE" class="rsvp">Delete</button><br><br>
+                        </form>
+                    <% });
+            } else {%>
+                <p class="welcome">You do not have any RSVPs</p>
+            <%}%>
         </div>
         </div>
     </div>

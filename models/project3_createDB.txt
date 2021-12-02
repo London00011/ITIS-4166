@@ -11,6 +11,7 @@ db.connections.insert([
         "host": "Heroes Aren't Hard to Find",
         "location": "Charlotte Convention Center",
         "image": "/images/heroes.jpg",
+        "rsvp": "",
     },
     {
         "id": "2",
@@ -24,6 +25,7 @@ db.connections.insert([
         "host": "Heroes Aren't Hard to Find",
         "location": "Charlotte Convention Center",
         "image": "/images/mini.PNG",
+        "rsvp": "",
     },
     {
         "id": "3",
@@ -37,6 +39,7 @@ db.connections.insert([
         "host": "Ultimate Comics",
         "location": "The Park Expo & Conference Center",
         "image": "/images/oak.PNG",
+        "rsvp": "",
     },
     {
         "id": "4",
@@ -50,6 +53,7 @@ db.connections.insert([
         "host": "Heroes Aren't Hard to Find",
         "location": "417 Pecan Ave. Charlotte, NC 28204",
         "image": "/images/heroesStore.jpg",
+        "rsvp": "",
     },
     {
         "id": "5",
@@ -63,6 +67,7 @@ db.connections.insert([
         "host": "Rebel Base Comics and Toys",
         "location": "701-c South Sharon Amity Charlotte, NC 28211",
         "image": "/images/rebel.jpg",
+        "rsvp": "",
     },
     {
         "id": "6",
@@ -76,5 +81,28 @@ db.connections.insert([
         "host": "A. Pennyworth's",
         "location": "11025 Monroe Rd D, Matthews, NC 28105",
         "image": "/images/pennyworth.jpg",
+        "rsvp": "",
     }
+]);
+
+db.user.insert([
+    {
+  "_id": {
+    "$oid": "6185b25e8e39d13b244ef11e"
+  },
+  "firstName": "London",
+  "lastName": "Steeb",
+  "email": "csteeb1@uncc.edu",
+  "password": "$2b$10$bpOSp4NRk5XUn1eCRUEqJ.VXZH.bCnIyG3J1ZzktRw6bKvt6Ai23i",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61872bd8677d1c336096d47b"
+  },
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "jd@gmail.com",
+  "password": "$2b$10$FrHQjyrV.rCby7v0gserE.7NEZdzP/lGaMj/58IhjIiKD/RteQY9u",
+  "__v": 0
+}
 ]);

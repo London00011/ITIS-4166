@@ -1,5 +1,6 @@
 const model = require('../models/user');
 const Connection = require('../models/connection');
+const rsvp = require('../models/rsvp');
 
 exports.new = (req, res)=>{
         return res.render('./user/new');
@@ -11,7 +12,7 @@ exports.create = (req, res, next)=>{
     user.save()
     .then(user=> {
         req.flash('success', 'Registration succeeded!');
-        res.redirect('login');
+        res.redirect('./user/login');
     })
     .catch(err=>{
         if(err.name === 'ValidationError' ) {
@@ -59,10 +60,10 @@ exports.login = (req, res, next)=>{
 
 exports.profile = (req, res, next)=>{
     let id = req.session.user;
-    Promise.all([model.findById(id), Connection.find({creator: id})])
+    Promise.all([model.findById(id), Connection.find({creator: id}), rsvp.find({user: id}).populate('connection')])
     .then(results=>{
-        const [user, connections] = results;
-        res.render('./user/profile', {user, connections});
+        const [user, connections, rsvps] = results;
+        res.render('./user/profile', {user, connections, rsvps});
     })
     .catch(err=>next(err));
 };
@@ -77,6 +78,3 @@ exports.logout = (req, res, next)=>{
     });
    
  };
-
-
-

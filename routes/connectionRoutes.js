@@ -1,7 +1,8 @@
 const express = require('express');
 const controller = require('../controllers/connectionController');
-const { isLoggedIn } = require('../middlewares/auth');
+const { isLoggedIn, isNotCreator } = require('../middlewares/auth');
 const{validateId} = require('../middlewares/validator');
+const rsvpRoutes = require('./rsvpRoutes');
 
 const router = express.Router();
 
@@ -25,5 +26,9 @@ router.put('/:id', validateId, isLoggedIn, controller.update);
 
 //DELETE /connections/:id, delete the connection identified by id
 router.delete('/:id', validateId, isLoggedIn, controller.delete);
+
+router.post('/:id/rsvp', validateId, isLoggedIn, isNotCreator, controller.editRsvp);
+
+router.delete('/:id/rsvp', validateId, isLoggedIn, controller.deleteRsvp);
 
 module.exports = router;

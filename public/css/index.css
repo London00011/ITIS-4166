@@ -326,3 +326,28 @@ form {
     color: white;
     text-align: left;
 }
+
+.rsvp {
+    background-color: #105285;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;;
+    -moz-borer-radius: 5px;
+    -webkit-border-radius: 4px;
+}
+
+.rsvpWrapper {
+    position: relative;
+    /* margin-bottom: 200px;
+    margin-left: 200px; */
+}
+
+.rsvp {
+    position: relative;
+    right: -550px;
+}
+
+.rsvpText {
+    margin-left: 87%;
+    margin-right: -50%;
+}

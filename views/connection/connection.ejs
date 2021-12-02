@@ -29,7 +29,7 @@
     <div class="mainbody">
         <div class="buttons">
             <%if(user == connection.creator._id) {%>
-                <form>
+                <form id="updateDelete">
                     <button type = "submit" formmethod = "GET" formaction = "/connections/<%= connection.id%>/edit" id="button">Update</button>
                     <button type = "submit" formmethod = "POST" formaction = '/connections/<%= connection.id%>?_method=DELETE' id="button2">Delete</button>
                 </form>
@@ -56,6 +56,19 @@
             <p class="location"><%= connection.end%></p>
             <br>
             <small>Posted <%= connection.createdAt.toLocaleString()%> by <%= connection.creator.firstName + ' ' + connection.creator.lastName%></small>
+            <br><br>
+            <div class="rsvpWrapper">
+                <%if(user) {%>
+                    <%if(user != connection.creator._id) {%>
+                        <form>
+                            <p class="rsvpText">Would you like to RSVP?</p>
+                            <button type="submit" class="rsvp" formmethod="POST" formaction="/connections/<%= connection.id%>/rsvp" id="rsvp" name="rsvp" value="YES">Yes</button>
+                            <button type="submit" class="rsvp" formmethod="POST" formaction="/connections/<%= connection.id%>/rsvp" id="rsvp" name="rsvp" value="NO">No</button>
+                            <button type="submit" class="rsvp" formmethod="POST" formaction="/connections/<%= connection.id%>/rsvp" id="rsvp" name="rsvp" value="MAYBE">Maybe</button>
+                        </form>
+                    <% } %>
+                <% } %>
+            </div>
         </div>
     </div>
 <%- include('../partials/footer.ejs')%>
